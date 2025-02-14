@@ -67,3 +67,50 @@ By exploring this repository and running the script, you can learn about:
 
    ```bash
    python train.py --mode train --data capitals.json
+   ```
+
+   This command will:
+   *   Load the country-capital data from `capitals.json`.
+   *   Preprocess the data and prepare training examples.
+   *   Vectorize the text data using TF-IDF.
+   *   Train a Logistic Regression classifier.
+   *   Save the trained model to the `saved_model` directory.
+
+**2. Making Predictions:**
+
+   Once the model is trained, you can ask questions about capitals using the `predict` mode:
+
+   ```bash
+   python train.py --mode predict --question "What is the capital of France?"
+   ```
+
+   Replace `"What is the capital of France?"` with your question. The script will:
+   *   Load the trained model from the `saved_model` directory.
+   *   Preprocess your question.
+   *   Use the trained model to predict the capital.
+   *   Print the answer.
+
+**Customizing Data and Model:**
+
+*   **Data:** You can modify the `capitals.json` file to use a different dataset of country-capital pairs. Ensure the JSON format remains consistent.
+*   **Model:**  While this script uses `LogisticRegression` for simplicity, you could experiment with other classifiers from `scikit-learn` (e.g., `MLPClassifier`, `SVC`, etc.) by modifying the `CountryCapitalModel` class.
+*   **Preprocessing:**  Explore different NLP preprocessing steps or TF-IDF parameters to see how they affect performance.
+
+## Code Explanation (Brief Highlights)
+
+*   **`CountryCapitalModel` class:**  Encapsulates the entire model logic.
+*   **`load_data()`:**  Loads country-capital pairs from the JSON file.
+*   **`prepare_data()`:** Generates training questions and labels from the country-capital data.
+*   **`preprocess_text()`:**  Performs NLP preprocessing on text inputs.
+*   **`train()`:**  Trains the machine learning model using TF-IDF and Logistic Regression.
+*   **`predict()`:**  Makes predictions for new questions.
+*   **`save_model()` and `load_model()`:**  Handle saving and loading the trained model components.
+*   **`main()` function:**  Parses command-line arguments and orchestrates the training and prediction processes.
+
+## Further Exploration
+
+*   **Experiment with different datasets:** Try using a larger or more diverse dataset of countries and capitals.
+*   **Try different classifiers:**  Replace `LogisticRegression` with other classifiers like Support Vector Machines (SVC), Random Forests, or more complex Neural Networks (MLPClassifier) and compare their performance.
+*   **Improve preprocessing:**  Explore more advanced NLP techniques like stemming, handling synonyms, or using word embeddings.
+*   **Add evaluation metrics:** Implement metrics like accuracy or precision/recall to quantitatively evaluate the model's performance on a test dataset.
+*   **Create a user interface:**  Build a simple web interface or GUI to make the model more interactive.
